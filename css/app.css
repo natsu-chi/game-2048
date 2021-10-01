@@ -14,7 +14,7 @@
 }
 body {
     background-color: #ECF0F3;
-    font-family: 'Meiryo';
+    font-family: 'Meiryo', 'Arial';
     position: relative;
 }
 div {
@@ -78,8 +78,6 @@ h1 {
 }
 
 /* 重新遊戲按鈕 */
-
-/* 平板、手機模式 */
 @media only screen and (max-width: 768px) {
     .newGame {
         width: 10vmin;
@@ -117,7 +115,7 @@ h1 {
                                      rgba(255,255,255,0.25));
     }
 }
-
+/* 平板、手機模式 */
 @media only screen and (max-width: 600px) {
     .newGame {
         right: 3vmin;
@@ -178,8 +176,6 @@ h1 {
     }
 }
 
-
-
 /* 遊戲內容 */
 .game-frame {
     width: 70vmin;
@@ -236,6 +232,45 @@ h1 {
     text-align: center;
     line-height: 12.68vmin;
 }
+
+/* 平板、手機模式 */
+@media only screen and (max-width: 600px) {
+    .game-frame {
+        width: 96vmin;
+        height: 96vmin;
+    }
+    
+    .game-container {
+        width: 87.65vmin;
+        height: 87.65vmin;
+    }
+    
+    .grid-container {
+        margin-left: 5.565vmin;
+    }
+    
+    .grid-container:nth-child(1) {
+        margin-top: 5.565vmin;
+    }
+    .grid-container:not(:last-child) {
+        margin-bottom: 1.39vmin;
+    }
+    
+    .grid-cell {
+        width: 18.09vmin;
+        height: 18.09vmin;
+    }
+    .grid-cell:not(:last-child) {
+        margin-right: 1.39vmin;
+    }
+    
+    .tile-inner {
+        width: 17.39vmin;
+        height: 17.39vmin;
+        line-height: 17.39vmin;
+    }
+}
+
 
 /* 遊戲結束特效 */
 
@@ -432,6 +467,12 @@ h1 {
     transition: transform 0.3s;
 }
 
+
+/* 行動裝置 -- 關閉手機滾動 */
+html.fixWindow {
+    position: fixed;
+    width: 100%;
+}
 
 
 

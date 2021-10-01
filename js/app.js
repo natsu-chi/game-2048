@@ -1,6 +1,25 @@
 $(function () {
-    // 遊戲開始設定
+    // 禁止用戶縮放
+    document.addEventListener('touchstart',function (event) { 
+        if(event.touches.length>=2){ 
+          event.preventDefault(); 
+        } 
+    }) 
     
+    document.addEventListener('touchmove',function (event) { 
+        if(event.touches.length>=2){ 
+          event.preventDefault(); 
+        } 
+    }) 
+    
+    document.addEventListener('touchend',function (event) { 
+        if(event.touches.length>=2){ 
+          event.preventDefault(); 
+        } 
+    }) 
+
+    // 遊戲開始設定
+
     // 隱藏所有方塊
     $('.tile-inner').hide();
 
@@ -45,7 +64,6 @@ $(function () {
                     break;
                 case 38: // up
                     document.removeEventListener('keydown', detectKeydown);
-
                     direction = 'up';
                     console.log(direction);
                     tileMovesRoutine(direction, isGameover, myScore);
@@ -53,7 +71,6 @@ $(function () {
                     break;
                 case 39: // right
                     document.removeEventListener('keydown', detectKeydown);
-
                     direction = 'right';
                     console.log(direction);
                     tileMovesRoutine(direction, isGameover, myScore);
@@ -61,7 +78,6 @@ $(function () {
                     break;
                 case 40: // down
                     document.removeEventListener('keydown', detectKeydown);
-
                     direction = 'down';
                     console.log(direction);
                     tileMovesRoutine(direction, isGameover, myScore);
@@ -83,8 +99,73 @@ $(function () {
         })
     }
 
+
+    // 偵測滑動動作
+
+    // --- 開始偵測滑動動作
+    function detectSwipeDirec(swipeDirection) {
+        if (!isGameover) {
+            console.clear();
+            tileMovesRoutine(swipeDirection, isGameover, myScore);
+            // setTimeout(startDetectSwipeDirec, 310);
+        }
+    }
+
+    function startDetectSwipeDirec() {
+        var startx, starty;
+        var endx, endy;
+        var swipeDirection = '';
+        let gameFrame = document.querySelector('.game-frame');
+        
+        gameFrame.addEventListener('touchstart', function(e) {
+            startx = e.touches[0].pageX;
+            starty = e.touches[0].pageY;
+            // 暫時停止偵測滑動動作
+            gameFrame.removeEventListener('touchstart', startDetectSwipeDirec);
+        });
+
+        gameFrame.addEventListener('touchend', function(e) {
+            // 暫時停止偵測滑動動作
+            gameFrame.removeEventListener('touchend', startDetectSwipeDirec);
+
+            endx = e.changedTouches[0].pageX;
+            endy = e.changedTouches[0].pageY;
+            var direction = getDirection(startx, starty, endx, endy);
+            switch (direction) {
+                case 0:
+                    swipeDirection = '';
+                    break;
+                case 1:
+                    swipeDirection = 'up';
+                    break;
+                case 2:
+                    swipeDirection = 'down';
+                    break;
+                case 3:
+                    swipeDirection = 'left';
+                    break;
+                case 4:
+                    swipeDirection = 'right';
+                    break;
+                default:
+                    swipeDirection = '';
+            }
+
+            if (swipeDirection) {
+                detectSwipeDirec(swipeDirection);
+            } else {
+                // startDetectSwipeDirec();
+            }
+        });
+
+
+    }
+
     // --- 開啟鍵盤偵測功能
-    startDetectKeydown();        
+    startDetectKeydown();
+
+    // --- 開啟手機滑動偵測功能
+    startDetectSwipeDirec();
 
 
     // 重新開始遊戲
@@ -92,6 +173,5 @@ $(function () {
     $('.newGame').click(function() {
         newGame(myScore.bestRecord);
     });
-    
 
 })
