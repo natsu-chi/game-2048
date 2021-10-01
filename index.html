@@ -4,9 +4,69 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/app.css">
     <title>2048</title>
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
 </head>
 <body>
+    <div id="gameover">
+        <p>GAMEOVER</p>
+        <div class="newGame restart-btn">Try Again</div>
+    </div>
+    <div class="container">
+        <div id="title"><h1>2048</h1></div>
+        <div id="scoreBoxes">
+            <div>
+                <b id="score">0</b><br>
+                <b>SCORE</b>
+            </div>
+            <div>
+                <b id="best">0</b><br>
+                <b>BEST</b>
+            </div>
+        </div>
+    </div>
+    <div class="game-frame">
+        <div class="game-container">
+            <div class="grid-container">
+                <div class="grid-cell"><div class="tile-inner position11"></div></div>
+                <div class="grid-cell"><div class="tile-inner position12"></div></div>
+                <div class="grid-cell"><div class="tile-inner position13"></div></div>
+                <div class="grid-cell"><div class="tile-inner position14"></div></div>
+            </div>
+            <div class="grid-container">
+                <div class="grid-cell"><div class="tile-inner position21"></div></div>
+                <div class="grid-cell"><div class="tile-inner position22"></div></div>
+                <div class="grid-cell"><div class="tile-inner position23"></div></div>
+                <div class="grid-cell"><div class="tile-inner position24"></div></div>
+            </div>
+            <div class="grid-container">
+                <div class="grid-cell"><div class="tile-inner position31"></div></div>
+                <div class="grid-cell"><div class="tile-inner position32"></div></div>
+                <div class="grid-cell"><div class="tile-inner position33"></div></div>
+                <div class="grid-cell"><div class="tile-inner position34"></div></div>
+            </div>
+            <div class="grid-container">
+                <div class="grid-cell"><div class="tile-inner position41"></div></div>
+                <div class="grid-cell"><div class="tile-inner position42"></div></div>
+                <div class="grid-cell"><div class="tile-inner position43"></div></div>
+                <div class="grid-cell"><div class="tile-inner position44"></div></div>
+            </div>
+        </div>
+    </div>
     
+    <div class="illustrate">
+        <b>How to play:</b>
+        <p>Use arrow keys ← → ↓ ↑ to move tiles.
+            Tiles with same number merge into one when touch.
+            Add them up to reach <b>2048</b>!
+        </p>
+    </div>
+    <div class="newGame">NEW GAME</div>
+
+    <script src="js/game-obj.js"></script>
+    <script src="js/functions.js"></script>
+    <script src="js/animate.js"></script>
+    <script src="js/app.js"></script>
 </body>
 </html>

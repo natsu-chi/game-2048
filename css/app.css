@@ -1,0 +1,442 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    /* 相關變數 */
+    /* 方塊 width == height */
+    --aBoxWidth: 12.68vmin;
+    --boxMargin: 1.015vmin;
+    /* .grid-cell 跟 .tile-inner 的寬高差異: 0.51vmin */
+    --oneStepDistance: 14.205vmin;
+}
+body {
+    background-color: #ECF0F3;
+    font-family: 'Meiryo';
+    position: relative;
+}
+div {
+    border-radius: 20px;
+}
+
+h1 {
+    font-size: 3.5rem;
+}
+
+/* 標題區域 */
+.container {
+    margin: 4vmin auto;
+    width: 70vmin;
+    display: flex;
+}
+
+#title {
+    flex-grow: 1;
+}
+
+#scoreBoxes {
+    flex-grow: 1;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+#scoreBoxes > div {
+    width: 12.68vmin;
+    height: 12.68vmin;
+    background-color: #F5F7F8;
+    text-align: center;
+    line-height: 6.34vmin;
+}
+
+#scoreBoxes > div:nth-child(1) {
+    margin-right: 2vmin;
+}
+
+/* 平板、手機模式 */
+@media only screen and (max-width: 414px) {
+    h1 {
+        font-size: 3rem;
+    }
+    p {
+        font-size: 0.9rem;
+    }
+    #scoreBoxes > div {
+        font-size: 0.7rem;
+    }
+    .illustrate {
+        font-size: 0.9rem;
+    }
+}
+
+/* 遊戲說明 */
+.illustrate {
+    width: 70vmin;
+    margin: 2vmin auto;
+}
+
+/* 重新遊戲按鈕 */
+
+/* 平板、手機模式 */
+@media only screen and (max-width: 768px) {
+    .newGame {
+        width: 10vmin;
+        height: 10vmin;
+        text-align: center;
+        font-weight: bold;
+        line-height: 10vmin;
+        border-radius: 50%;
+        position: fixed;
+        bottom: 8vmin;
+        right: 5vmin;
+        background-color: #FFFFFF;
+        color: #003651;
+        overflow: hidden;
+    }
+
+    .newGame:hover {
+        content: "NEW GAME";
+        width: 20vmin;
+        border-radius: 50px;
+        transition: 0.6s;
+        cursor: pointer;
+        color: #FFFFFF;
+        background-color: rgb(0, 54, 81, 0.8);
+    }
+    .restart-btn {
+        width: 20vmin;
+        border-radius: 50px;
+    }
+    .restart-btn:hover {
+        transition: 0s;
+    }
+    .restart-btn:active {
+        background: linear-gradient(135deg, rgba(0,0,0,0.22),
+                                     rgba(255,255,255,0.25));
+    }
+}
+
+@media only screen and (max-width: 600px) {
+    .newGame {
+        right: 3vmin;
+    }
+}
+
+@media only screen and (max-width: 414px) {
+    .newGame {
+        width: 70vmin;
+        height: 10vmin;
+        position: static;
+        margin: auto;
+        border-radius: 20px;
+    }
+    .newGame:hover {
+        width: 70vmin;
+        height: 10vmin;
+        cursor: pointer;
+        color: #FFFFFF;
+        background-color: #003651;
+        transition: 1s; 
+    }
+    .newGame:active {
+        background: linear-gradient(135deg, rgba(0,0,0,0.22),
+                                     rgba(255,255,255,0.25));
+    }
+}
+
+/* 桌上型電腦 */
+
+@media only screen and (min-width: 768px) {
+    .newGame {
+        width: 23vmin;
+        height: 10vmin;
+        text-align: center;
+        font-weight: bold;
+        line-height: 10vmin;
+        border-radius: 50px;
+        position: fixed;
+        bottom: 8vmin;
+        right: 20vmin;
+        background-color:#FFFFFF;
+        color: #003651;
+        box-shadow: 3px 3px 9px rgba(0,0,0,0.11),
+                    -8px -8px 12px 0 rgba(255, 255, 255, 0.5);
+    }
+    
+    .newGame:hover {
+        cursor: pointer;
+        color: #FFFFFF;
+        background-color: #003651;
+        transition: 1s; 
+    }
+    
+    .newGame:active {
+        background: linear-gradient(135deg, rgba(0,0,0,0.22),
+                                     rgba(255,255,255,0.25));
+    }
+}
+
+
+
+/* 遊戲內容 */
+.game-frame {
+    width: 70vmin;
+    height: 70vmin;
+    background-color: #ECF0F3;
+    margin: auto;
+    -webkit-box-shadow: inset -18px -18px 30px 1px #ffffff, inset 18px 18px 30px 1px rgba(0,0,0,0.16); 
+    box-shadow: inset -18px -18px 30px 1px #ffffff, inset 18px 18px 30px 1px rgba(0,0,0,0.16);
+    position: relative;
+}
+
+.game-container {
+    width: 63.91vmin;
+    height: 63.91vmin;
+    background-color: #F5F7F8;
+    -webkit-box-shadow: 6px 6px 30px 1px rgba(0,0,0,0.11); 
+    box-shadow: 6px 6px 30px 1px rgba(0,0,0,0.11);
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+}
+
+.grid-container {
+    width: min-content;
+    display: flex;
+    margin-left: 4.06vmin;
+}
+
+.grid-container:nth-child(1) {
+    margin-top: 4.06vmin;
+}
+.grid-container:not(:last-child) {
+    margin-bottom: 1.015vmin;
+}
+
+.grid-cell {
+    width: 13.19vmin;
+    height: 13.19vmin;
+    background-color: #E5E7E8;
+}
+.grid-cell:not(:last-child) {
+    margin-right: 1.015vmin;
+}
+
+.tile-inner {
+    width: 12.68vmin;
+    height: 12.68vmin;
+    background-color: #FFF;
+    font-size: 20px;
+    font-weight: bold;
+    text-align: center;
+    line-height: 12.68vmin;
+}
+
+/* 遊戲結束特效 */
+
+#gameover {
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    background-color: rgba(187, 227, 255, 0.9);
+    z-index: 10;
+    font-size: 5rem;
+    font-weight: bold;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    visibility: hidden;
+}
+
+#gameover > p {
+    color: 003651;
+}
+
+.restart-btn {
+    position: static;
+    font-size: 1rem;
+    margin-top: 1rem;
+}
+
+/* 分數系列 */
+.active-2 {
+    color: #003651;
+    font-size: 30px;
+}
+
+.active-4 {
+    color: #FFFFFF;
+    background-color: #C2CFD9;
+    font-size: 30px;
+}
+
+.active-8  {
+    color: #FFFFFF;
+    background-color: #6E8DA4;
+    font-size: 30px;
+}
+
+.active-16 {
+    color: #FFFFFF;
+    background-color: rgb(53, 71, 85, 0.7);
+    font-size: 30px;
+}
+
+.active-32 { 
+    color: #FFFFFF;
+    background-color: #353e44;
+    font-size: 30px;
+}
+
+.active-64 {
+    color: #003651;
+    background-color: #F0E5DF;
+    font-size: 30px;
+}
+
+.active-128 {
+    color: #ECF0F3;
+    background-color: #C58490;
+    font-size: 30px;
+}
+
+.active-256 { 
+    color: #ECF0F3;
+    background-color: #8A1E41;
+    font-size: 30px;
+}
+
+.active-512 {
+    color: #ECF0F3;
+    background-color: #D6A5A2;
+    font-size: 30px;
+}
+
+.active-1024 {
+    color: #ECF0F3;
+    background-color: #C3A696;
+}
+
+.active-2048 {
+    color: #ECF0F3;
+    background-color: #EAB289;
+}
+
+.active-4096 {
+    color: #6C443D;
+    background-color: #FCD9B3;
+}
+
+.active-8192 {
+    color: #F5F0EA;
+    background-color: #834521;
+}
+
+.active-16384 {
+    color: #ECF0F3;
+    background-color: #1D2E35;
+}
+
+
+/* 平板、手機模式 */
+
+@media only screen and (max-width: 450px) {
+    .active-128, .active-256, .active-512 {
+        font-size: 25px;
+    }
+}
+@media only screen and (max-width: 415px) {
+    .active-128, .active-256, .active-512 {
+        font-size: 20px;
+    }
+    .active-1024, .active-2048, .active-4096, .active-8192, .active-16384 {
+        font-size: 15px;
+    }
+    .active-16384, .active-32768, .active-65536 {
+        font-size: 10px;
+    }
+}
+
+
+
+
+/* 移動動畫系列 */
+
+/* 向上移動 */
+.move-up-1-step {
+    transform: translateY(calc(-1 * var(--oneStepDistance)));
+    transition: transform 0.3s;
+}
+
+.move-up-2-step {
+    transform: translateY(calc(-2 * var(--oneStepDistance)));
+    transition: transform 0.3s;
+}
+
+.move-up-3-step {
+    transform: translateY(calc(-3 * var(--oneStepDistance)));
+    transition: transform 0.3s;
+}
+
+/* 向下移動 */
+.move-down-1-step {
+    transform: translateY(calc(var(--oneStepDistance)));
+    transition: transform 0.3s;
+}
+
+.move-down-2-step {
+    transform: translateY(calc(2 * var(--oneStepDistance)));
+    transition: transform 0.3s;
+}
+
+.move-down-3-step {
+    transform: translateY(calc(3 * var(--oneStepDistance)));
+    transition: transform 0.3s;
+}
+
+/* 向左移動 */
+.move-left-1-step {
+    transform: translateX(calc(-1 * var(--oneStepDistance)));
+    transition: transform 0.3s;
+}
+
+.move-left-2-step {
+    transform: translateX(calc(-2 * var(--oneStepDistance)));
+    transition: transform 0.3s;
+}
+
+.move-left-3-step {
+    transform: translateX(calc(-3 * var(--oneStepDistance)));
+    transition: transform 0.3s;
+}
+
+/* 向右移動 */
+.move-right-1-step {
+    transform: translateX(calc(var(--oneStepDistance)));
+    transition: transform 0.3s;
+}
+
+.move-right-2-step {
+    transform: translateX(calc(2 * var(--oneStepDistance)));
+    transition: transform 0.3s;
+}
+
+.move-right-3-step {
+    transform: translateX(calc(3 * var(--oneStepDistance)));
+    transition: transform 0.3s;
+}
+
+
+
+
+
+/* .zoom-effect {
+    transform: scale(1.2,1.2);
+    transition: transform 0.2s;
+} */
