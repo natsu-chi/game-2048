@@ -47,17 +47,17 @@ function updateTileInfo(selectTileClassNum, stepCanMove) {
 
     // 如果抓的到物件，直接更新屬性(.moves)
     if(found) {
-        console.groupCollapsed(`(${selectTileClassNum})修改物件`);
+        // console.groupCollapsed(`(${selectTileClassNum})修改物件`);
         found.step += stepCanMove;
-        console.log(`目前step: ${TileList[TileList.indexOf(found)].step}`); // 印出剛剛修改的物件
-        console.groupEnd();
+        // console.log(`目前step: ${TileList[TileList.indexOf(found)].step}`); // 印出剛剛修改的物件
+        // console.groupEnd();
     } else {
         // 沒抓到(undefined)就創一個物件
-        console.groupCollapsed(`(${selectTileClassNum})新增物件`);
+        // console.groupCollapsed(`(${selectTileClassNum})新增物件`);
         selectTileCurrentValue = parseInt($(`.position${selectTileClassNum}`).text());
         TileList.push(new Tile(selectTileClassNum, stepCanMove, 0, selectTileCurrentValue));
-        console.log(`目前step: ${TileList[TileList.length-1].step}`); // 印出剛剛新增的物件
-        console.groupEnd();
+        // console.log(`目前step: ${TileList[TileList.length-1].step}`); // 印出剛剛新增的物件
+        // console.groupEnd();
     }
 }
 
@@ -82,7 +82,7 @@ class Score {
     addScore(tileClassNum) { // 當合體時，新增分數 (tile的值) (e.g. tile-2 跟 tile-2 合體，分數 +4)
         // 轉個物件
         let tileObj = useClassNumGetTileObj(tileClassNum);
-        console.log(tileObj);
+        // console.log(tileObj);
         // 將分數的 .currentScore 加上 tile 合體的值
         ScoreObj.currentScore += tileObj.value;
     }
@@ -99,7 +99,7 @@ function updateScoreDisplay(scoreAddThisRound, scoreObj) {
 
     // BEST 部分
     let bestRecord = scoreObj.bestRecord;
-    console.log(`bestRecord: ${bestRecord}`);
+    // console.log(`bestRecord: ${bestRecord}`);
     $('#best').text(bestRecord);
 }
 

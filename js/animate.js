@@ -6,8 +6,8 @@
 function getRandTileClassNum(tileCanCreateOptList) {
     let idx = Math.floor( Math.random() * tileCanCreateOptList.length );
     let tileCreateClassNum = tileCanCreateOptList[idx];
-    console.log('idx:', idx);
-    console.log(`create new tile on: ${tileCreateClassNum}`);
+    // console.log('idx:', idx);
+    // console.log(`create new tile on: ${tileCreateClassNum}`);
     return tileCreateClassNum;
 }
 // --- 隨機取方塊值的數字：如果 classNum 是奇數，就取2，偶數就取4
@@ -31,13 +31,13 @@ async function createATile() {
     // 抓新的 顯示中方塊 tileList
     let newTilesDOMList = getActiveTiles();
     let newTilesExistClassNumList = getClassNum(newTilesDOMList);
-    console.log('newTilesExistList:', newTilesExistClassNumList);
+    // console.log('newTilesExistList:', newTilesExistClassNumList);
 
     // 過濾 tileOptList，留下沒有 newTilesExistClassNumList 元素的元素，再存入新的陣列
     let tileOptList = [11, 12, 13, 14, 21, 22, 23, 24, 31, 32, 33, 34, 41, 42, 43, 44];
     let tileCanCreateOptList = [... new Set(tileOptList)]
         .filter(elem => !(newTilesExistClassNumList.includes(elem)));
-    console.log('tileCanCreateOptList:', tileCanCreateOptList);
+    // console.log('tileCanCreateOptList:', tileCanCreateOptList);
     // 在可以新增方塊的位置 陣列，隨機取 1 個位置
 
     // 從 newTileOptList 隨機取一個數字，並用這個數字當新方塊的位置
@@ -58,17 +58,17 @@ async function createATile() {
 // [used by functions.js - function `tileMovesRoutine`]
 function moveAndCreateNewTile(direction, scoreObj) {
 
-    console.group('最後結果');
-    console.log(TileList);
-    console.log(scoreObj);
-    console.groupEnd();
+    // console.group('最後結果');
+    // console.log(TileList);
+    // console.log(scoreObj);
+    // console.groupEnd();
 
     // 按下按鈕之後，移動動畫 & 新增方塊
     async function createTiles() {
-        console.group('createTiles()');
+        // console.group('createTiles()');
         await moveAnimations(direction);
         await createATile();
-        console.groupEnd();
+        // console.groupEnd();
     }
 
     createTiles();
@@ -77,24 +77,24 @@ function moveAndCreateNewTile(direction, scoreObj) {
 // 移動動畫
 // [used by animate.js - function `moveAndCreateNewTile`]
 async function moveAnimations(direction) {
-    console.group('moveAnimations()');
+    // console.group('moveAnimations()');
     try {
         // 抓全部存在的方塊
         let tilesExistList = getExistTiles();
-        console.groupCollapsed('Got all exist Tiles');
-        console.log(tilesExistList);
-        console.groupEnd();
+        // console.groupCollapsed('Got all exist Tiles');
+        // console.log(tilesExistList);
+        // console.groupEnd();
 
         // 移動動畫
         await applyAnimateCSS(tilesExistList, 300, direction);
-        console.log('applyAnimateCSS success');
+        // console.log('applyAnimateCSS success');
 
         // 改 .reunionState == 1 的方塊 (被合體的方塊) 的數字
         await changeValue(tilesExistList);
 
         // 隱藏 .reunionState == 2 的方塊 (來合體的方塊)
         await applyHideCSS(tilesExistList);
-        console.log('applyHideCSS success');
+        // console.log('applyHideCSS success');
 
         // 更新DOM元素順序
         updateDOM(tilesExistList);
@@ -104,7 +104,7 @@ async function moveAnimations(direction) {
     } catch (error) {
         console.log('ERROR!!!!', error);
     }
-    console.groupEnd();
+    // console.groupEnd();
 }
 
 // moveAnimations() 使用功能
@@ -129,7 +129,7 @@ async function applyAnimateCSS(tilesList, delay, direction) {
                 $(`.position${tile.classNum}`).toggleClass(`move-${direction}-${steps}-step`);
             }
         }
-        console.log('wait...');
+        // console.log('wait...');
         setTimeout(() => {
             resolve();
             reject('REQUEST ERROR -- applyAnimateCSS');

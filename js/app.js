@@ -58,28 +58,28 @@ $(function () {
                     // 暫時停止偵測鍵盤動作
                     document.removeEventListener('keydown', detectKeydown);
                     direction = 'left';
-                    console.log(direction);
+                    // console.log(direction);
                     tileMovesRoutine(direction, isGameover, myScore);
                     setTimeout(startDetectKeydown, 310);
                     break;
                 case 38: // up
                     document.removeEventListener('keydown', detectKeydown);
                     direction = 'up';
-                    console.log(direction);
+                    // console.log(direction);
                     tileMovesRoutine(direction, isGameover, myScore);
                     setTimeout(startDetectKeydown, 310);
                     break;
                 case 39: // right
                     document.removeEventListener('keydown', detectKeydown);
                     direction = 'right';
-                    console.log(direction);
+                    // console.log(direction);
                     tileMovesRoutine(direction, isGameover, myScore);
                     setTimeout(startDetectKeydown, 310);
                     break;
                 case 40: // down
                     document.removeEventListener('keydown', detectKeydown);
                     direction = 'down';
-                    console.log(direction);
+                    // console.log(direction);
                     tileMovesRoutine(direction, isGameover, myScore);
                     setTimeout(startDetectKeydown, 310);
                     break;
